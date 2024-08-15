@@ -1,0 +1,17 @@
+name: comment on a issue
+
+on:
+  issues:
+    types: [opened, edited, deleted]
+
+jobs:
+  comment-with-action:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: modify-issue
+        shell: bash
+        run: echo "The issue had executed the workflow"
+
+      - name: github-context-object
+        shell: bash
+        run: echo "${{ toJson(github.event) }}"
