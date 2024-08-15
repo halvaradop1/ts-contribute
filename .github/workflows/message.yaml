@@ -1,0 +1,30 @@
+name: message
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+      - "chore/*"
+      - "feat/*"
+  workflow_dispatch:
+
+jobs:
+  start-text:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout-code
+        uses: actions/checkout@v4
+
+      - name: print message at startup
+        shell: bash
+        run: echo "Hello, Github Action course"
+
+  end-text:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: print message at the end
+        shell: bash
+        run: echo "Goodbye, Github Action course"
