@@ -15,7 +15,7 @@ jobs:
       - name: create comment
         uses: peter-evans/create-or-update-comment@v4
         with:
-          issue-number: 1
+          issue-number: ${{ github.event.issue.number }}
           body: |
             The team working on your issue.
             Created by [@halvaradop][1]
