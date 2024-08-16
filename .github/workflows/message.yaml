@@ -1,15 +1,10 @@
 name: message
 
 on:
-  push:
-    branches:
-      - master
   pull_request:
     branches:
-      - master
       - "chore/*"
       - "feat/*"
-  workflow_dispatch:
 
 jobs:
   start-text:

@@ -2,7 +2,7 @@ name: comment on a issue
 
 on:
   issues:
-    types: [opened, edited, deleted]
+    types: [opened]
 
 jobs:
   comment-with-action:
