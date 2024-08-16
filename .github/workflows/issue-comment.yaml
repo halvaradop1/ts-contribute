@@ -12,6 +12,13 @@ jobs:
         shell: bash
         run: echo "The issue had executed the workflow"
 
-      - name: github-context-object
-        shell: bash
-        run: echo "${{ toJson(github.event) }}"
+      - name: create comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            The team working on your issue.
+            Created by [@halvaradop][1]
+
+            [1]: https://github.com/halvaradop
+          reactions: "+1"
