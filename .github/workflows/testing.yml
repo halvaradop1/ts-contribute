@@ -1,0 +1,26 @@
+name: testing
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
+
+      - name: install dependencies
+        shell: bash
+        run: npm install
+
+      - name: build repo
+        shell: bash
+        run: npm run build

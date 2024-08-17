@@ -1,0 +1,17 @@
+name: json-returns-by-github-actions
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  print-json:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+
+      - name: print json
+        shell: bash
+        run: ${{ toJson(github) }}
