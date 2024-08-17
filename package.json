@@ -1,0 +1,33 @@
+{
+  "name": "github-actions-core",
+  "version": "0.1.0",
+  "description": "project to learn github-actions",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/halvaradop-dev/github-actions-core.git"
+  },
+  "keywords": [
+    "git",
+    "github",
+    "github",
+    "actins",
+    "ci-cd",
+    "deployment",
+    "continuos",
+    "integration",
+    "contiuos",
+    "deployment",
+    "productivity",
+    "automation"
+  ],
+  "author": "Hernan Alvarado <hernanvid123@gmail.com | halvaradop@unbosque.edu.co>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/halvaradop-dev/github-actions-core/issues"
+  },
+  "homepage": "https://github.com/halvaradop-dev/github-actions-core#readme"
+}
