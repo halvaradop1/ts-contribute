@@ -29,5 +29,14 @@
   "bugs": {
     "url": "https://github.com/halvaradop-dev/github-actions-core/issues"
   },
-  "homepage": "https://github.com/halvaradop-dev/github-actions-core#readme"
+  "homepage": "https://github.com/halvaradop-dev/github-actions-core#readme",
+  "devDependencies": {
+    "@halvaradop/tailwindcss-utilities": "^0.2.2",
+    "@halvaradop/ts-utility-types": "^0.6.0",
+    "@types/node": "^22.4.0",
+    "typescript": "^5.5.4"
+  },
+  "files": [
+    "dist"
+  ]
 }
