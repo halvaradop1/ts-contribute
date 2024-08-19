@@ -3,7 +3,7 @@ name: json-returns-by-github-actions
 on:
   pull_request:
     branches:
-      - master
+      - "dev/json"
 
 jobs:
   print-json:
@@ -14,4 +14,4 @@ jobs:
 
       - name: print json
         shell: bash
-        run: ${{ toJson(github.event) }}
+        run: "${{ toJson(github.event) }}"
