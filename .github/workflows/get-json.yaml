@@ -1,9 +1,8 @@
 name: json-returns-by-github-actions
 
 on:
-  pull_request:
-    branches:
-      - master
+  issues:
+    types: [opened]
 
 jobs:
   print-json:
@@ -14,4 +13,4 @@ jobs:
 
       - name: print json
         shell: bash
-        run: ${{ toJson(github) }}
+        run: echo "${{ toJson(github) }}"
