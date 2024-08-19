@@ -1,9 +1,8 @@
 name: json-returns-by-github-actions
 
 on:
-  pull_request:
-    branches:
-      - "dev/json"
+  issues:
+    types: [opened]
 
 jobs:
   print-json:
