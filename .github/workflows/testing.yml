@@ -21,6 +21,6 @@ jobs:
         shell: bash
         run: npm install
 
-      - name: build repo
+      - name: testing repo
         shell: bash
-        run: npm run build
+        run: npm run test
