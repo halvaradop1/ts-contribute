@@ -17,8 +17,8 @@ jobs:
           node-version: "18.x"
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: testing        
-        run: npm run test
+      - run: npm install
+      - run: npm run test
 
   deploy-development-environment:
     needs: testing
