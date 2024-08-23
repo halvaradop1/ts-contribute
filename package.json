@@ -5,8 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "vitest",
-    "format": "npx prettier --write",
-    "format:check": "npx prettier --check"
+    "test:coverage": "vitest --coverage",
+    "format": "npx prettier --write .",
+    "format:check": "npx prettier --check ."
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "@halvaradop/tailwindcss-utilities": "^0.2.2",
     "@halvaradop/ts-utility-types": "^0.6.0",
     "@types/node": "^22.4.0",
+    "@vitest/coverage-v8": "^2.0.5",
     "prettier": "^3.3.3",
     "typescript": "^5.5.4",
     "vitest": "^2.0.5"
