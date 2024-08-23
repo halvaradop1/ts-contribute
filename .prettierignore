@@ -1,0 +1,8 @@
+.github/workflows
+node_modules
+dist
+
+# Configuration
+package.json
+package-lock.json
+tsconfig.json

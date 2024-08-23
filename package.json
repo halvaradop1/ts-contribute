@@ -5,8 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "vitest",
-    "format": "npx prettier --write",
-    "format:check": "npx prettier --check"
+    "test:coverage": "vitest --coverage",
+    "format": "npx prettier --write .",
+    "format:check": "npx prettier --check ."
   },
   "repository": {
     "type": "git",

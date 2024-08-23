@@ -1,0 +1,40 @@
+name: development-environment
+
+on:
+  pull_request:
+    types: opened
+
+jobs:
+  testing:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: testing        
+        run: npm run test
+
+  deploy-development-environment:
+    needs: testing
+    name: development-env
+    runs-on: ubuntu-20.04
+    environment:
+      name: development
+      url:
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: echo "Deployed to development environment"
