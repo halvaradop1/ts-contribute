@@ -9,6 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
+      - name: init
+        run: echo "init testing"
+
       - name: checkout repo
         uses: actions/checkout@v4
 
@@ -24,3 +27,6 @@ jobs:
       - name: testing repo
         shell: bash
         run: npm run test
+
+      - name: end
+        run: echo "end testing"

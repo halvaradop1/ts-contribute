@@ -17,7 +17,7 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            The team working on your issue.
+            The team will review and work on your issue shortly. Thank you for your contribution!
             Created by [@halvaradop][1]
 
             [1]: https://github.com/halvaradop
