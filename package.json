@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "vitest",
+    "build": "tsc",
     "test:coverage": "vitest --coverage",
     "format": "npx prettier --write .",
     "format:check": "npx prettier --check ."
