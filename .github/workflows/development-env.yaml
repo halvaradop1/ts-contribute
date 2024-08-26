@@ -24,6 +24,15 @@ jobs:
     needs: build
     runs-on: ubuntu-20.04
     steps:
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: install
+        run: npm install
+
       - name: testing
         run: npm run test:coverage
 
