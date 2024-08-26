@@ -8,14 +8,12 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-      - name: checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: setup node
         uses: actions/setup-node@v4
         with:
           node-version: "18.x"
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - run: npm install
       - run: npm run build
@@ -24,17 +22,15 @@ jobs:
     needs: build
     runs-on: ubuntu-20.04
     steps:
+      - uses: actions/checkout@v4
+
       - name: setup node
         uses: actions/setup-node@v4
         with:
           node-version: "18.x"
-          token: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: install
-        run: npm install
-
-      - name: testing
-        run: npm run test:coverage
+      - run: npm install
+      - run: npm run test:coverage
 
   deploy-development-environment:
     needs: testing
@@ -43,13 +39,11 @@ jobs:
     environment:
       name: development
     steps:
-      - name: checkout
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v4
+      
       - name: setup node
         uses: actions/setup-node@v4
         with:
           node-version: "18.x"
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - run: echo "Deployed to development environment"
