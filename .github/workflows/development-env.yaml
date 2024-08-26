@@ -5,20 +5,32 @@ on:
     types: [opened, reopened, edited, synchronize]
 
 jobs:
-  testing:
+  build:
     runs-on: ubuntu-20.04
     steps:
-      - name: checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: setup node
         uses: actions/setup-node@v4
         with:
           node-version: "18.x"
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - run: npm install
-      - run: npm run test
+      - run: npm run build
+
+  testing:
+    needs: build
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
+      
+      - run: npm install
+      - run: npm run test:coverage
 
   deploy-development-environment:
     needs: testing
@@ -26,15 +38,12 @@ jobs:
     runs-on: ubuntu-20.04
     environment:
       name: development
-      url:
     steps:
-      - name: checkout
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v4
+      
       - name: setup node
         uses: actions/setup-node@v4
         with:
           node-version: "18.x"
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - run: echo "Deployed to development environment"
