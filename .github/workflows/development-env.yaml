@@ -2,11 +2,14 @@ name: development-environment
 
 on:
   pull_request:
-    branches: [master]
     types: [opened, reopened, edited, synchronize]
+  push:
+    branches:
+      - master
 
 jobs:
   build:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
@@ -20,6 +23,7 @@ jobs:
       - run: npm run build
 
   testing:
+    if: github.event_name == 'pull_request'
     needs: build
     runs-on: ubuntu-20.04
     steps:
@@ -34,6 +38,7 @@ jobs:
       - run: npm run test:coverage
 
   deploy-development-environment:
+    if: github.ref == 'refs/heads/master'
     needs: testing
     name: development-env
     runs-on: ubuntu-20.04

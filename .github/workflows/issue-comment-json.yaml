@@ -14,6 +14,7 @@ jobs:
         run: echo "The issue had executed the workflow"
 
       - name: create comment
+        if: github.event_name == 'issues'
         uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.issue.number }}
