@@ -6,6 +6,8 @@ on:
   push:
     branches:
       - master
+  pull_request_review:
+    types: [submitted]
 
 jobs:
   build:
@@ -38,7 +40,7 @@ jobs:
       - run: npm run test:coverage
 
   deploy-development-environment:
-    if: github.ref == 'refs/heads/master'
+    if: github.event.review.state == 'approved'
     needs: testing
     name: development-env
     runs-on: ubuntu-20.04
