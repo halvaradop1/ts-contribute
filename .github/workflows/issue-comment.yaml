@@ -1,4 +1,4 @@
-name: comment on a issue
+name: comment on a issue and get json
 
 on:
   issues:
@@ -22,3 +22,13 @@ jobs:
 
             [1]: https://github.com/halvaradop
           reactions: "+1"
+
+  get-json:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get JSON
+        id: get-json
+        shell: bash
+        run: echo "${{ github }}"
