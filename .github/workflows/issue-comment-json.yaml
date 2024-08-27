@@ -3,6 +3,7 @@ name: comment on a issue and get json
 on:
   issues:
     types: [opened]
+  workflow_dispatch: {}
 
 jobs:
   comment-with-action:
