@@ -42,3 +42,20 @@ There is a trigger that allows us to run a workflow manually from the Actions se
 on:
     workflow_dispatch: {}
 ```
+
+## Components of a workflow
+
+### Syntax
+
+YAML files have a simple syntax where spacing should be set to 2 spaces, and tabs must be equivalent to spaces. The indentation and structure of a YAML file are determined by the indentation of each line relative to the columns. In other words, if multiple lines start at the same column, they are sibling properties. If a property has multiple sub-properties indented to the right by 2 spaces, this indicates encapsulation, meaning those sub-properties belong to the parent property and provide additional settings or configurations.
+
+```yaml
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "18.x"
+```
