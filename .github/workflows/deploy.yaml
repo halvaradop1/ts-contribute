@@ -1,0 +1,14 @@
+name: deploy
+
+on:
+  pull_request_target:
+    types: closed
+
+jobs:
+  deploy:
+    if: github.event.pull_request.merged == true
+    environment: development
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Deployed to development environment"
