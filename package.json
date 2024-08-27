@@ -50,6 +50,16 @@
     "semi": false,
     "tabWidth": 4,
     "singleQuote": false,
-    "trailingComma": "es5"
+    "trailingComma": "es5",
+    "overrides": [
+      {
+        "files": "*.yaml",
+        "options": {
+          "tabWidth": 2,
+          "useTabs": true,
+          "printWidth": 130
+        }
+      }
+    ]
   }
 }
