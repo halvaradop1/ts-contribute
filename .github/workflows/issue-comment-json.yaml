@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: modify-issue
         shell: bash
-        run: echo "The issue had executed the workflow"
+        run: echo "The issue has executed the workflow"
 
       - name: create comment
         if: github.event_name == 'issues'
@@ -33,4 +33,4 @@ jobs:
       - name: Get JSON
         id: get-json
         shell: bash
-        run: echo "${{ github }}"
+        run: echo "${{ toJson(github) }}"
