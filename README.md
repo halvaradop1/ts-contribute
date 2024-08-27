@@ -68,3 +68,14 @@ You can execute any shell command in your workflow using the run property within
 steps:
     - run: echo "Using shell commands in a step"
 ```
+
+### Conditionals
+
+Conditionals allows us to check if a step complet the required to be executed based in other thing, you can check if the event created matches with a pull_request or issue trigger or where does branch was create the pull request o more conditionals
+
+```yaml
+steps:
+    deploy:
+        needs: [test, build]
+        if: github.ref == 'refs/heads/master' || github.event_name == 'pull_request'
+```
