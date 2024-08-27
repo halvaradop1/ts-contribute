@@ -13,3 +13,9 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
+
+      - name: Create new release
+        run: |
+          echo "Creating release ${{ github.event.inputs.version }}"
+          git tag -a ${{ github.event.inputs.version }} -m "version ${{ github.event.inputs.version }}"
+          git push origin ${{ github.event.inputs.version }}
