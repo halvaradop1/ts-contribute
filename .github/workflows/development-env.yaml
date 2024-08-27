@@ -4,9 +4,6 @@ on:
   pull_request:
     branches: [master]
     types: [opened, reopened, edited, synchronize]
-    branches-ignore:
-      - "refactor/*"
-      - "hotfix/*"
 
 jobs:
   build:
@@ -40,6 +37,7 @@ jobs:
     needs: testing
     name: development-env
     runs-on: ubuntu-20.04
+    if: github.event_name == 'pull_request'
     environment:
       name: development
     steps:
