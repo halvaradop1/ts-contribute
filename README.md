@@ -27,3 +27,18 @@ on:
         tags:
             - "v.x"
 ```
+
+### Manual events
+
+There is a trigger that allows us to run a workflow manually from the Actions section in our GitHub repository. This trigger is `workflow_dispatch`, which enables workflows with this property defined in their triggers to be run manually. The steps to execute a workflow manually are:
+
+-   Go to your GitHub repository.
+-   Navigate to the Actions section at the top of the UI.
+-   In the left sidebar, find the "All workflows" section, which contains the list of workflows for the repository.
+-   Select the desired workflow and click the "Run workflow" button.
+-   You have now manually triggered the workflow.
+
+```yaml
+on:
+    workflow_dispatch: {}
+```
