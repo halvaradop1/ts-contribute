@@ -59,3 +59,12 @@ jobs:
               with:
                   node-version: "18.x"
 ```
+
+### Use shell commands
+
+You can execute any shell command in your workflow using the run property within the steps of your jobs. You can choose which shell to use—either Bash or PowerShell. By default, Bash is used.
+
+```yaml
+steps:
+    - run: echo "Using shell commands in a step"
+```
