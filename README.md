@@ -4,10 +4,10 @@
 
 In this section, you will learn about the triggers used to execute events with GitHub Actions. To run an event, you need to specify the trigger using the `on` keyword in the main line of your workflow file. In this section, you'll define the conditions under which you want the workflow to run. Some of the most commonly used triggers are:
 
--   `workflow_dispatch`
--   `push`
--   `pull_request`
--   `pull_request_review`
+- `workflow_dispatch`
+- `push`
+- `pull_request`
+- `pull_request_review`
 
 We will explore some of these triggers in the following sections, focusing on how to use them effectively and in which scenarios they can be advantageous.
 
@@ -17,30 +17,30 @@ There are no limits to the number of triggers you can use in a single workflow, 
 
 ```yaml
 on:
-    push:
-        branches:
-            - master
-            - "chore/*"
-        branches-ignore:
-            - "fix/*"
-            - "refactor/*"
-        tags:
-            - "v.x"
+  push:
+    branches:
+      - master
+      - "chore/*"
+    branches-ignore:
+      - "fix/*"
+      - "refactor/*"
+    tags:
+      - "v.x"
 ```
 
 ### Manual events
 
 There is a trigger that allows us to run a workflow manually from the Actions section in our GitHub repository. This trigger is `workflow_dispatch`, which enables workflows with this property defined in their triggers to be run manually. The steps to execute a workflow manually are:
 
--   Go to your GitHub repository.
--   Navigate to the Actions section at the top of the UI.
--   In the left sidebar, find the "All workflows" section, which contains the list of workflows for the repository.
--   Select the desired workflow and click the "Run workflow" button.
--   You have now manually triggered the workflow.
+- Go to your GitHub repository.
+- Navigate to the Actions section at the top of the UI.
+- In the left sidebar, find the "All workflows" section, which contains the list of workflows for the repository.
+- Select the desired workflow and click the "Run workflow" button.
+- You have now manually triggered the workflow.
 
 ```yaml
 on:
-    workflow_dispatch: {}
+  workflow_dispatch: {}
 ```
 
 ## Components of a workflow
@@ -51,13 +51,13 @@ YAML files have a simple syntax where spacing should be set to 2 spaces, and tab
 
 ```yaml
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
-              with:
-                  node-version: "18.x"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
 ```
 
 ### Use shell commands
@@ -66,7 +66,7 @@ You can execute any shell command in your workflow using the run property within
 
 ```yaml
 steps:
-    - run: echo "Using shell commands in a step"
+  - run: echo "Using shell commands in a step"
 ```
 
 ### Conditionals
@@ -75,7 +75,7 @@ Conditionals allows us to check if a step complet the required to be executed ba
 
 ```yaml
 steps:
-    deploy:
-        needs: [test, build]
-        if: github.ref == 'refs/heads/master' || github.event_name == 'pull_request'
+  deploy:
+    needs: [test, build]
+    if: github.ref == 'refs/heads/master' || github.event_name == 'pull_request'
 ```
