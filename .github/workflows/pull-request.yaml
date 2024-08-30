@@ -2,9 +2,9 @@ name: pull-request-trigger
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, closed]
   pull_request_target:
-    types: [opened, synchronize]
+    types: [opened, synchronize, closed]
   
 jobs:
   pull-request:
