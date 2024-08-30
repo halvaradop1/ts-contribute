@@ -32,6 +32,5 @@ jobs:
     if: github.event_name == 'pull_request_target' && github.event.pull_request_target.merge == true
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v4
-      - name: get json
+      - uses: actions/checkout@v4  
       - run: echo "Deploy using pull_request_target trigger"
