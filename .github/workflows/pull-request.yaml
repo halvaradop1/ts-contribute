@@ -2,8 +2,14 @@ name: pull-request-trigger
 
 on:
   pull_request:
+    branches:
+      - "chore/pull-request-workflow"
+      - "feat/pull-request-workflow"
     types: [opened, synchronize, closed]
   pull_request_target:
+    branches:
+      - "chore/pull-request-workflow"
+      - "feat/pull-request-workflow"
     types: [opened, synchronize, closed]
   
 jobs:
