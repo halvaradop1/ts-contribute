@@ -2,9 +2,9 @@ name: pull-request-trigger
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, closed]
   pull_request_target:
-    types: [opened, synchronize]
+    types: [opened, synchronize, closed]
   
 jobs:
   pull-request:
@@ -33,4 +33,5 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
+      - name: get json
       - run: echo "Deploy using pull_request_target trigger"
