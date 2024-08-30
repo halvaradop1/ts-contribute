@@ -3,10 +3,20 @@ name: pull-request-trigger
 on:
   pull_request:
     types: [opened, synchronize]
-
+  pull_request_target:
+    types: [opened, synchronize]
+  
 jobs:
   pull-request:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
       - run: echo "${{ toJson(github.event.pull_request) }}"
+
+  pull-request-target:
+    if: github.event_name == 'pull_request_target'
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "${{ toJson(github.event.pull_request_target) }}"
