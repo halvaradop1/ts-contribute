@@ -2,8 +2,14 @@ name: pull-request-trigger
 
 on:
   pull_request:
+    branches:
+      - "chore/pull-request-workflow"
+      - "feat/pull-request-workflow"
     types: [opened, synchronize, closed]
   pull_request_target:
+    branches:
+      - "chore/pull-request-workflow"
+      - "feat/pull-request-workflow"
     types: [opened, synchronize, closed]
   
 jobs:
@@ -19,7 +25,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
-      - run: echo "${{ toJson(github.event.pull_request_target) }}"
+      - run: echo "${{ toJson(github) }}"
 
   pull-request-merge:
     if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
@@ -29,7 +35,7 @@ jobs:
       - run: echo "Deploy using pull_requet trigger"
 
   pull-request-target-merge:
-    if: github.event_name == 'pull_request_target' && github.event.pull_request_target.merge == true
+    if: github.event_name == 'pull_request_target' && github.event.pull_request.merge == true
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4  
