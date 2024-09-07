@@ -2,17 +2,10 @@ name: development-environment
 
 on:
   pull_request:
-    branches: [master]
-    types: [opened, reopened, edited, synchronize]
-  push:
-    branches:
-      - master
-  pull_request_target:
-    types: closed
+    types: [opened, synchronize, closed]
 
 jobs:
   build:
-    if: github.event_name == 'pull_request'
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
@@ -26,7 +19,6 @@ jobs:
       - run: npm run build
 
   testing:
-    if: github.event_name == 'pull_request'
     needs: build
     runs-on: ubuntu-20.04
     steps:
@@ -39,21 +31,19 @@ jobs:
 
       - run: npm install
       - run: npm run test:coverage
+
+  toString:
+    if: github.event.action == 'opened'
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
       - run: echo "${{ toJson(github) }}"
 
   deploy-development-environment:
-    if: github.event.pull_request.merged == true
+    if: github.base_ref == 'master' && github.event.pull_request.merged == true
     needs: testing
-    name: development-env
     runs-on: ubuntu-20.04
-    environment:
-      name: development
+    environment: development
     steps:
       - uses: actions/checkout@v4
-
-      - name: setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18.x"
-
       - run: echo "Deployed to development environment"
