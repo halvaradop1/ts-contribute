@@ -6,11 +6,6 @@ on:
       - "chore/pull-request-workflow"
       - "feat/pull-request-workflow"
     types: [opened, synchronize, closed]
-  pull_request_target:
-    branches:
-      - "chore/pull-request-workflow"
-      - "feat/pull-request-workflow"
-    types: [opened, synchronize, closed]
   
 jobs:
   pull-request:
@@ -20,23 +15,9 @@ jobs:
       - uses: actions/checkout@v4
       - run: echo "${{ toJson(github.event.pull_request) }}"
 
-  pull-request-target:
-    if: github.event_name == 'pull_request_target'
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v4
-      - run: echo "${{ toJson(github) }}"
-
   pull-request-merge:
     if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
       - run: echo "Deploy using pull_requet trigger"
-
-  pull-request-target-merge:
-    if: github.event_name == 'pull_request_target' && github.event.pull_request.merge == true
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v4  
-      - run: echo "Deploy using pull_request_target trigger"
