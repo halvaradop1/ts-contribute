@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    if: github.head_ref == 'dev' && github.event.pull_request.merged == true
+    if: github.base_ref == 'dev' && github.event.pull_request.merged == true
     runs-on: ubuntu-20.04
     environment: development
     steps:
