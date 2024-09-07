@@ -5,6 +5,7 @@ on:
     branches:
       - "chore/pull-request-workflow"
       - "feat/pull-request-workflow"
+      - "dev"
     types: [opened, synchronize, closed]
   
 jobs:
