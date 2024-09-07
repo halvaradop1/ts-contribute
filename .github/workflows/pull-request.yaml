@@ -8,6 +8,11 @@ on:
     types: [opened, synchronize, closed]
   
 jobs:
+  print:
+    runs-on: ubuntu-20.04
+    steps:
+      - run: echo "pull_request"
+
   pull-request:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-20.04
