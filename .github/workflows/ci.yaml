@@ -1,4 +1,4 @@
-name: development-environment
+name: ci
 
 on:
   pull_request:
