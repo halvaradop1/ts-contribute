@@ -2,14 +2,23 @@ name: pull-request
 
 on:
   pull_request:
+    branches:
+      - dev
     types: [opened, closed]
 
 jobs:
   deploy:
     if: github.head_ref == 'dev' && github.event.pull_request.merged == true
     runs-on: ubuntu-20.04
+    environment: development
     steps:
       - uses: actions/checkout@v4
       - run: echo "Deployed to development environment"
 
+      - run: echo "${{ toJson(github) }}"
+
+  deploy-json:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
       - run: echo "${{ toJson(github) }}"
