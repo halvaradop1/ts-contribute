@@ -39,7 +39,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: echo "${{ toJson(github) }}"
 
-  deploy-development-environment:
+  cd-to-development:
     if: github.base_ref == 'master' && github.event.pull_request.merged == true
     needs: testing
     runs-on: ubuntu-20.04
@@ -47,3 +47,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: echo "Deployed to development environment"
+
+  cd-to-production:
+    if: github.base_ref == 'master' && github.event.pull_request.merged == true && startsWith(github.head_ref, 'release/')
+    needs: testing
+    runs-on: ubuntu-20.04
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Deployed to production environment"
