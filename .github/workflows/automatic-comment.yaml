@@ -1,4 +1,4 @@
-name: comment from .github repository
+name: automatic comment from .github repository
 
 on:
   issues:
