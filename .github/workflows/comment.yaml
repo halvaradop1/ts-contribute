@@ -1,4 +1,4 @@
-name: comment from .github repo
+name: comment from .github repository
 
 on:
   issues:
