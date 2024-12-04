@@ -1,0 +1,26 @@
+name: automatic comment from .github repository
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+  workflow_dispatch: {}
+
+jobs:
+  create-comment:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: create comment
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            Thank you, @${{ github.actor }}, for your contribution to [${{ github.repository }}](${{ github.event.repository.html_url }})!
+
+            Your submission will be reviewed by [@halvaradop][1]. We will provide feedback or approval as soon as possible.
+
+            [1]: https://github.com/halvaradop
