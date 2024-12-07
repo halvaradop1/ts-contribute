@@ -13,6 +13,7 @@ on:
 
 jobs:
   create-new-release:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
@@ -30,6 +31,7 @@ jobs:
       - run: git fetch --tags
       - run: |
           tag=$(git tag --points-at)
+          echo "tag for the releas $tag"
           [[ tag =~ ^release ]] && publish=true || publish=false
           echo "$publish" >> $GITHUB_OUTPUT
 
