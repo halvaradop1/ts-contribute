@@ -33,7 +33,7 @@ jobs:
           tag=$(git tag --points-at)
           echo "tag for the release $tag"
           [[ tag =~ ^release ]] && publish=true || publish=false
-          echo "$publish" >> $GITHUB_OUTPUT
+          echo "publish=$publish" >> $GITHUB_ENV
         shell: bash
 
   deploy:
