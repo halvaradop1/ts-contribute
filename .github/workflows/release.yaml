@@ -8,8 +8,12 @@ on:
         required: true
         default: "1.0.0"
 
+  pull_request:
+    types: [opened, synchronize]
+
 jobs:
   create-new-release:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
@@ -19,3 +23,23 @@ jobs:
           echo "Creating release ${{ github.event.inputs.version }}"
           git tag -a ${{ github.event.inputs.version }} -m "version ${{ github.event.inputs.version }}"
           git push origin ${{ github.event.inputs.version }}
+
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: git fetch --tags
+      - run: |
+          tag=$(git tag --points-at)
+          echo "tag for the release $tag"
+          [[ tag =~ ^release ]] && publish=true || publish=false
+          echo "publish=$publish" >> $GITHUB_ENV
+        shell: bash
+
+  deploy:
+    needs: check
+    runs-on: ubuntu-latest
+    if: ${{ needs.check.outputs.publish == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Deploying"
