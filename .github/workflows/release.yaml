@@ -31,9 +31,10 @@ jobs:
       - run: git fetch --tags
       - run: |
           tag=$(git tag --points-at)
-          echo "tag for the releas $tag"
+          echo "tag for the release $tag"
           [[ tag =~ ^release ]] && publish=true || publish=false
           echo "$publish" >> $GITHUB_OUTPUT
+        shell: bash
 
   deploy:
     needs: check
