@@ -19,3 +19,13 @@ jobs:
         with:
           name: artifact-app
           path: dist/
+
+  download:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: artifact-app
+          path: artifact-cache-content
+
+      - run: ls && ls artifact-cache-content
