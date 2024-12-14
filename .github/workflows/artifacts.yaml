@@ -22,6 +22,7 @@ jobs:
 
   download:
     runs-on: ubuntu-22.04
+    needs: build
     steps:
       - uses: actions/download-artifact@v4
         with:
