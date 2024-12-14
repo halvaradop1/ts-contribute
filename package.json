@@ -2,6 +2,7 @@
   "name": "github-actions-core",
   "version": "0.1.0",
   "description": "project to learn github-actions",
+  "type": "module",
   "main": "dist/index.js",
   "scripts": {
     "test": "vitest",
@@ -35,8 +36,10 @@
   },
   "homepage": "https://github.com/halvaradop-dev/github-actions-core#readme",
   "devDependencies": {
-    "@halvaradop/tailwindcss-utilities": "^0.2.2",
-    "@halvaradop/ts-utility-types": "^0.6.0",
+    "@halvaradop/tailwindcss-animations": "^0.1.0",
+    "@halvaradop/tailwindcss-merge": "^0.1.0",
+    "@halvaradop/tailwindcss-utilities": "^0.2.3",
+    "@halvaradop/ts-utility-types": "^0.15.0",
     "@types/node": "^22.4.0",
     "@vitest/coverage-v8": "^2.0.5",
     "prettier": "^3.3.3",
