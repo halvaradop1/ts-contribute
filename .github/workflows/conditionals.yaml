@@ -16,10 +16,10 @@ jobs:
         with:
           node-version: "18.x"
 
-      - uses: npm install
+      - run: npm install
       - name: build artifact
         id: build-app
-        uses: npm run build
+        run: npm run build
         continue-on-error: true
 
       - name: check if the previous step was successful
