@@ -1,0 +1,48 @@
+name: outputs
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  # steps.<step_id>.outputs.<output_name>
+  output-steps:
+    runs-on: ubuntu-22.04
+    steps:
+      - id: generate-random
+        name: generate random
+        run: echo "random=$(echo $RANDOM)" >> "$GITHUB_OUTPUT"
+
+      - name: consume random
+        run: echo "The random number is ${{ steps.random.outputs.random }}"
+
+  # outputs.<output_name>
+  output-jobs:
+    runs-on: ubuntu-22.04
+    outputs:
+      generate-random: ${{ steps.generate-random.outputs.random }}
+    steps:
+      - name: generate random of the previous job without outputs keyword
+        run: echo "$random"
+
+      - id: generate-random
+        name: generate random
+        run: echo "random=$(echo $RANDOM)" >> "$GITHUB_OUTPUT"
+
+      - name: consume random
+        run: echo "The random number is ${{ steps.generate-random.outputs.random }}"
+
+      - id: random-not-available
+        name: generate random number not available in the outputs
+        run: echo "random-not-available=$(echo $RANDOM)" >> "$GITHUB_OUTPUT"
+
+      - name: consume random number not available in the outputs
+        run: echo "The random number is ${{ steps.generate-random.outputs.random-not-available }}"
+
+  # needs.<job_id>.outputs.<output_name>
+  output-consume:
+    runs-on: ubuntu-22.04
+    needs: output-jobs
+    steps:
+      - name: consume random number from output-jobs job
+        run: echo "The random number is ${{ needs.output-jobs.outputs.generate-random }}"
