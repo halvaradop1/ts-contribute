@@ -1,0 +1,19 @@
+name: environment variables from Github Actions
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  deploy-dev:
+    environment: development
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Environment ${{ vars.ENV_VAL }}"
+
+  # Only there may be one environment per workflow
+  # deploy-prod:
+  # environment: production
+  # runs-on: ubuntu-latest
+  # steps:
+  # - run: echo "Environment ${ vars.ENV_VAL }"
