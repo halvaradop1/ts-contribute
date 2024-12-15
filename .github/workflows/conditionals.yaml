@@ -3,6 +3,8 @@ name: conditionals
 on:
   pull_request:
     types: [opened, synchronize]
+    branches:
+      - chore/conditionals
 
 jobs:
   build:

@@ -3,7 +3,7 @@ name: ci
 on:
   pull_request:
     types: [opened, synchronize, closed]
-    branches-ignore: 
+    branches-ignore:
       - chore/conditionals
 
 jobs:
