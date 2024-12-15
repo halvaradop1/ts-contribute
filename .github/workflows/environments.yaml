@@ -11,8 +11,9 @@ jobs:
     steps:
       - run: echo "Environment ${{ vars.ENV_VAL }}"
 
-  deploy-prod:
-    environment: production
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Environment ${{ vars.ENV_VAL }}"
+  # Only there may be one environment per workflow
+  # deploy-prod:
+  # environment: production
+  # runs-on: ubuntu-latest
+  # steps:
+  # - run: echo "Environment ${{ vars.ENV_VAL }}"
