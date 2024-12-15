@@ -1,3 +1,5 @@
+# This workflow demonstrates how to use outputs in a workflow run.
+# For more information, see: https://docs.github.com/actions/learn-github-actions/contexts#outputs
 name: outputs
 
 on:
@@ -14,7 +16,7 @@ jobs:
         run: echo "random=$(echo $RANDOM)" >> "$GITHUB_OUTPUT"
 
       - name: consume random
-        run: echo "The random number is ${{ steps.random.outputs.random }}"
+        run: echo "The random number is ${{ steps.generate-random.outputs.random }}"
 
   # outputs.<output_name>
   output-jobs:
@@ -32,12 +34,12 @@ jobs:
       - name: consume random
         run: echo "The random number is ${{ steps.generate-random.outputs.random }}"
 
-      - id: random-not-available
+      - id: generate-random-not-available
         name: generate random number not available in the outputs
         run: echo "random-not-available=$(echo $RANDOM)" >> "$GITHUB_OUTPUT"
 
       - name: consume random number not available in the outputs
-        run: echo "The random number is ${{ steps.generate-random.outputs.random-not-available }}"
+        run: echo "The random number is ${{ steps.generate-random-not-available.outputs.random-not-available }}"
 
   # needs.<job_id>.outputs.<output_name>
   output-consume:
