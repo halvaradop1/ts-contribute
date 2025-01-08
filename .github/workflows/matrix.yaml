@@ -1,4 +1,8 @@
+# This name is used to identify the workflow
 name: matrix strategy
+
+# This name is displayed in the Actions tab of the repository
+run-name: Matrix Strategy Workflow Run By ${{ github.actor }}
 
 on:
   workflow_dispatch: {}
@@ -7,7 +11,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04]
+        os: [ubuntu-20.04, ubuntu-22]
         node-version: [18.x, 20.x]
     runs-on: ${{ matrix.os }}
     steps:
