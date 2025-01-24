@@ -1,0 +1,14 @@
+name: Deployment to Production on Beta Branch
+
+on:
+  push:
+    branches:
+      - beta
+
+jobs:
+  deploy:
+    if: startsWith(github.head_ref, 'release/')
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - run: echo "Deploying to Production environment"
