@@ -1,0 +1,13 @@
+name: Deployment to Development on Beta Branch
+
+on:
+  push:
+    branches-ignore:
+      - beta
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+      - run: echo "Deploying to Development environment"
