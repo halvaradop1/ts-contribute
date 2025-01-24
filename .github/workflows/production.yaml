@@ -6,14 +6,18 @@ on:
       - beta
 
 jobs:
-  json:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "${{ toJson(github) }}"
-
   deploy:
     if: startsWith(github.ref_name, 'release/')
     runs-on: ubuntu-latest
     environment: production
     steps:
       - run: echo "Deploying to Production environment"
+
+  json:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Print GitHub context
+        shell: bash
+        run: echo "${{ toJson(github) }}"
