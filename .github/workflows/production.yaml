@@ -1,13 +1,14 @@
 name: Deployment to Production on Beta Branch
 
 on:
-  push:
+  pull_request:
     branches:
       - beta
+    types: [closed]
 
 jobs:
   deploy:
-    if: startsWith(github.ref, 'refs/heads/release/')
+    if: github.base_ref == 'beta' && github.event.pull_request.merged == true && startsWith(github.head_ref, 'release/')
     runs-on: ubuntu-latest
     environment: production
     steps:
